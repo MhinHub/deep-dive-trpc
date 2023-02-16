@@ -15,6 +15,9 @@ async function main() {
 
     const res2 = await client.log.mutate("Hello") // log in client console
     console.log("Mutation: ", res2)
+
+    const res3 = await client.users.getUser.query()
+    console.log("Nested query: ", res3)
 }
 
 main()
