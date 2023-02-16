@@ -30,6 +30,9 @@ async function main() {
     })
     console.log("Nested mutation: ", res4)
 
+    const res5 = await client.secretData.query() // Error: UNAUTHORIZED \\ change isAdmin to true in context.ts
+    console.log("Admin query: ", res5)
+
 }
 
 main()

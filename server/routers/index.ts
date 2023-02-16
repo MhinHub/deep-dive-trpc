@@ -1,4 +1,4 @@
-import { t } from "../trpc"
+import { adminProcedure, t } from "../trpc"
 import { usersRouter } from "./users"
 
 export const appRouter = t.router({
@@ -15,5 +15,9 @@ export const appRouter = t.router({
             console.log(req.input) // log in server console
             return true + " Logged"
         }),
+    secretData: adminProcedure.query(({ ctx }) => {
+        console.log(ctx.user)
+        return "Secret data for admin"
+    }),
     users: usersRouter
 })
