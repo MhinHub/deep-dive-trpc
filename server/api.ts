@@ -1,26 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import { initTRPC } from '@trpc/server';
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
+import { appRouter } from './routers';
 
-const t = initTRPC.create()
-
-
-const appRouter = t.router({
-    sayHello: t.procedure.query(() => {
-        return "Hello tRPC!"
-    }),
-    log: t.procedure
-        .input((input) => {
-            if (typeof input === "string") return input
-
-            throw new Error("Invalid input: Expected string")
-        })
-        .mutation(req => {
-            console.log(req.input) // log in server console
-            return true + " Logged"
-        })
-})
 
 const app = express();
 
